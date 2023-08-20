@@ -12,3 +12,5 @@
 Run the client with
 
     java -jar hermes.jar myWlanCard
+
+

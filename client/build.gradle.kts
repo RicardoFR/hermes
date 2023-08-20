@@ -1,10 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.targets
 
 plugins {
-    kotlin("jvm") version "1.8.21"
-    kotlin("plugin.serialization") version "1.8.21"
+    kotlin("jvm") version "1.9.0"
+    kotlin("plugin.serialization") version "1.9.0"
     application
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
@@ -26,9 +24,9 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
     implementation("ch.qos.logback:logback-classic:1.4.8")
 
-    implementation("com.influxdb:influxdb-client-kotlin:6.9.0")
+    implementation("com.influxdb:influxdb-client-kotlin:6.10.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("commons-io:commons-io:2.12.0")
     implementation("com.google.guava:guava:32.0.0-jre")
 
@@ -44,20 +42,15 @@ kotlin {
     jvmToolchain(11)
 }
 
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "org.cht.AppKt"
-    }
-}
-
 application {
-    mainClass.set("org.cht.AppKt")
+    mainClass.set("org.cht.MainKt")
 }
 
 tasks.withType<ShadowJar>() {
     manifest {
-        attributes["Main-Class"] = "org.cht.AppKt"
+        attributes["Main-Class"] = "org.cht.MainKt"
     }
+    archiveFileName="hermes.jar"
 }
 
 tasks {

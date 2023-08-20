@@ -9,7 +9,7 @@ import java.util.*
 
 private val logger = KotlinLogging.logger {}
 
-class ClientConfiguration private constructor(
+data class ClientConfiguration private constructor(
     val networkCardInterface: String,
     val dbHost: String,
     val dbToken: String,
@@ -112,7 +112,7 @@ class ClientConfiguration private constructor(
                     .readLines(p2.inputStream, Charset.defaultCharset())
                     .forEach { rawPacket -> mutableList.add(rawPacket.split(" ")[1]) }
             }
-            return mutableList;
+            return mutableList
         }
 
         private val shutdownThread: Thread = object : Thread() {

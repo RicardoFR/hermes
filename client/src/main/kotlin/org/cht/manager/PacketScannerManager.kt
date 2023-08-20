@@ -37,11 +37,23 @@ object PacketScannerManager {
                     .let { PacketMapper.mapPacket(it) }
             )
 
+            isSetupConfig(rawPacket) -> logger.info { rawPacket.rawString }
             else -> {
-                logger.error { "Invalid packet : " + rawPacket.rawString }
+                logger.error { "Error : " + rawPacket.rawString }
             }
         }
     }
+
+    private fun isSetupConfig(rawPacket: RawPacket): Boolean {
+        val rawString = rawPacket.rawString
+        return when {
+            rawString.contains("Set") -> true
+            rawString.contains("/dev/stdout") -> true
+            rawString.contains("BSSID") -> true
+            else -> false
+        }
+    }
+
 
     private fun isValidProbeRequest(
         rawPacket: RawPacket

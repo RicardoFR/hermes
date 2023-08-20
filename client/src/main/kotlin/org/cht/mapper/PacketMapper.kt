@@ -42,9 +42,7 @@ object PacketMapper {
             freqInMHz = frequencyMhz.toDouble()
         ).toUInt().toInt()
         val timestamp = probeRequest.timestamp
-        //val targetHost = probeRequest.wlanEssid
         val channel = probeRequest.wlanChannel
-        //val vendor = MacVendorLookupService.getMacVendor(mac)
 
         return Packet(
             mac = mac,
