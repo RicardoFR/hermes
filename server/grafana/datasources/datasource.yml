@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: "influxdb"
+    uid: "cfc8a849-f19e-4a8a-8bd2-23de59431d17"
+    type: "influxdb"
+    access: "proxy"
+    url: "http://influxdb:8086"
+    editable: true
+    secureJsonData:
+      token: "myToken"
+    jsonData:
+      version: Flux
+      organization: "cht"
+      defaultBucket: default-bucket
+      tlsSkipVerify: true
+      timeInterval: "1m"
